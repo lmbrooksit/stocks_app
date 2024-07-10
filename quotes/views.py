@@ -1,3 +1,5 @@
+# Copyright (c) 2024-2025 Lee Brooks All Rights Reserved
+ 
 from contextlib import redirect_stderr
 from django.shortcuts import render, redirect
 from .models import Stock
