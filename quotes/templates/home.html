@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<br />
+
+{% if ticker %} {{ ticker }} {% endif %} {% for thing in api %} {% if thing %}
+{% if thing == 'Error' %} There was a problem with your ticker symbol, please
+try again... <br />{% else %}
+
+<h1>{{ thing.symbol }}</h1>
+<br />
+Bid Price: ${{ thing.bidPrice }}<br />
+Ask Price: ${{ thing.askPrice }}<br />
+Sector: {{ thing.sector }}<br />
+Volume: {{ thing.volume }}<br />
+Last Sale Price: ${{ thing.lastSalePrice }}<br />
+
+{% endif %} {% endif %} {% endfor %} {% endblock %}
