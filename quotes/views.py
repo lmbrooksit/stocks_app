@@ -1,6 +1,7 @@
 # Copyright (c) 2024-2025 Lee Brooks All Rights Reserved
  
 from contextlib import redirect_stderr
+import re
 from django.shortcuts import render, redirect
 from .models import Stock
 from .forms import StockForm
@@ -27,7 +28,42 @@ def home(request):
 
     
 def about(request):
-    return render(request, 'about.html', {})
+    import pprint
+
+    cat = {'name': 'Zophie', 'age': 7, 'color': 'gray'}
+    allCats = []
+    allCats.append({'name': 'Zophie', 'age': 7, 'color': 'gray'})
+    allCats.append({'name': 'Pooka', 'age': 5, 'color': 'black'})
+    allCats.append({'name': 'Fat-tail', 'age': 4, 'color': 'orange'})
+    allCats.append({'name': '???', 'age': -1, 'color': 'tan'}) 
+
+
+    allCatsEx = '''cat = {'name': 'Zophie', 'age': 7, 'color': 'gray'} 
+    allCats = [] 
+
+    allCats.append({'name': 'Zophie', 'age': 7, 'color': 'gray'}) 
+
+    allCats.append({'name': 'Pooka', 'age': 5, 'color': 'black'}) 
+
+    allCats.append({'name': 'Fat-tail', 'age': 4, 'color': 'orange'}) 
+
+    allCats.append({'name': '???', 'age': -1, 'color': 'tan'})
+    
+    allCats
+    '''
+
+    theBoard = {'top-L': ' ', 'top-M': ' ', 'top-R': ' ','mid-L': ' ', 'mid-M': ' ', 'mid-R': ' ','low-L': ' ', 'low-M': ' ', 'low-R': ' '}
+    
+    pprint.pprint(theBoard)
+
+    howToPPrint = '''
+    theBoard = {'top-L': ' ', 'top-M': ' ', 'top-R': ' ','mid-L': ' ', 'mid-M': 'X', 'mid-R': ' ','low-L': ' ', 'low-M': ' ', 'low-R': ' '}
+    
+    printBoard = pprint.pprint(theBoard)
+
+    '''
+
+    return render(request, 'about.html', {'allCats': allCats, 'allCatsEx': allCatsEx, 'theBoard': theBoard, 'howToPPrint': howToPPrint})
 
 def add_stock(request):
     import requests 
@@ -65,3 +101,5 @@ def delete(request, stock_id):
 def delete_stock(request):
     ticker = Stock.objects.all()
     return render(request, 'delete_stock.html', {'ticker': ticker})
+
+
